@@ -6,17 +6,17 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class SayHelloCommand extends Command
+class SayGoodbyeCommand extends Command
 {
   protected function configure()
   {
-    $this->setName('say:hello')
-         ->setDescription('Say hello')
-         ->setHelp('This command will say hello.');
+    $this->setName('say:goodbye')
+         ->setDescription('Say goodbye')
+         ->setHelp('This command will say goodbye');
   }
 
   protected function execute(InputInterface $input, OutputInterface $output)
   {
-    echo 'hello';
+    echo 'Goodbye';
   }
 }
