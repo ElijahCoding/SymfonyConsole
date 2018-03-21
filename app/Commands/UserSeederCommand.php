@@ -9,6 +9,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Helper\ProgressBar;
 
 class UserSeederCommand extends Command
 {
@@ -40,6 +41,10 @@ class UserSeederCommand extends Command
     // notify users that seeding has started
     $output->writeln('<info>Seeding ' . $count . ' users</info>');
 
+    // Progress Bar
+    $progress = new ProgressBar($output, $count);
+    $progress->start();
+
     // loop and generate fake records
     for ($i = 0; $i < $count; $i++) {
       $statement = $this->db->prepare("INSERT INTO users (name, email) VALUES (:name, :email)");
@@ -48,9 +53,13 @@ class UserSeederCommand extends Command
         'name' => $this->faker->name,
         'email' => $this->faker->email
       ]);
+
+      $progress->advance();
     }
 
+    $progress->finish();
+
     // notify user on completion
-    $output->writeln('<info>Finished seeding users</info>');
+    $output->writeln("\n<info>Finished seeding users</info>");
   }
 }
