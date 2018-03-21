@@ -3,11 +3,10 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 $app = new \Slim\App([
-  'settings' => [
+    'settings' => [
         'displayErrorDetails' => true,
     ]
 ]);
-
 
 $container = $app->getContainer();
 
@@ -22,4 +21,12 @@ $container['view'] = function ($container) {
     ));
 
     return $view;
+};
+
+$container['config'] = function ($container) {
+    return [
+        'db' => [
+            'host' => 'localhost',
+        ]
+    ];
 };

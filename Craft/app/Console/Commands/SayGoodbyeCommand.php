@@ -8,21 +8,21 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class SayHelloCommand extends Command
+class SayGoodbyeCommand extends Command
 {
     /**
      * The command name.
      *
      * @var string
      */
-    protected $command = 'say:hello';
+    protected $command = 'say:goodbye';
 
     /**
      * The command description.
      *
      * @var string
      */
-    protected $description = 'Say hello';
+    protected $description = 'Command description.';
 
     /**
      * Handle the command.
@@ -34,9 +34,7 @@ class SayHelloCommand extends Command
      */
     public function handle(InputInterface $input, OutputInterface $output)
     {
-        for ($i = 0; $i < $this->option('repeat'); $i++) {
-            $this->info('Hello ' . $this->argument('name'));
-        }
+        return $this->info('Goodbye');
     }
 
     /**
@@ -47,7 +45,7 @@ class SayHelloCommand extends Command
     protected function arguments()
     {
         return [
-            ['name', InputArgument::REQUIRED, 'Your name.'],
+            //
         ];
     }
 
@@ -59,7 +57,7 @@ class SayHelloCommand extends Command
     protected function options()
     {
         return [
-            ['repeat', 'r', InputOption::VALUE_OPTIONAL, 'Times to repeat the output.', 1],
+            //
         ];
     }
 }
