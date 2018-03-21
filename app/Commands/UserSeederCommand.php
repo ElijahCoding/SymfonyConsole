@@ -2,6 +2,8 @@
 
 namespace App\Commands;
 
+use PDO;
+use Faker\Generator as Faker;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
@@ -10,6 +12,18 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class UserSeederCommand extends Command
 {
+    protected $db;
+
+    protected $faker;
+
+    public function __construct(PDO $db, Faker $faker)
+    {
+        parent::__construct();
+
+        $this->db = $db;
+        $this->faker = $faker;
+    }
+
   protected function configure()
   {
     $this->setName('seed:users')
