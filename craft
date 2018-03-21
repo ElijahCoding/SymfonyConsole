@@ -3,13 +3,14 @@
 
 require 'vendor/autoload.php';
 
-use App\Commands\SayHelloCommand;
-use App\Commands\SayGoodbyeCommand;
+use App\Commands\UserSeederCommand;
 use Symfony\Component\Console\Application;
 
 $application = new Application;
 
-$application->add(new SayHelloCommand);
-$application->add(new SayGoodbyeCommand);
+// $application->add(new SayHelloCommand);
+// $application->add(new SayGoodbyeCommand);
+
+$application->add(new UserSeederCommand);
 
 $application->run();
